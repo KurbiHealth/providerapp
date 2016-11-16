@@ -1,0 +1,74 @@
+/* ------------------------------------------------------------ *\
+	Nav
+\* ------------------------------------------------------------ */
+
+.nav { position: fixed; top: 60px; bottom: 0; left: 0; background: $color-blue; color: #fff; width: 82px; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 1px 0 3px rgba(0,0,0,.3); transition: width .3s; z-index: 5; }
+.nav i { margin-right: 5px; }
+.nav ul { margin-top: 16px; }
+.nav ul span { display: none; }
+.nav a:not(.nav-trigger) { display: block; padding: 27px 10px 27px 32px; text-decoration: none; transition: background-color .3s; }
+.nav a:not(.nav-trigger):hover { background: $color-dark-blue; }
+.nav .current span { font-weight: 700; }
+
+/*  Active  */
+
+.nav.active { width: 221px; }
+.nav.active ul span { display: inline-block; vertical-align: middle; }
+
+$breakpoint-mobile {
+	.nav { width: 60px; }
+	.nav a:not(.nav-trigger) { padding-left: 21px; }
+}
+
+/* ------------------------------------------------------------ *\
+	Nav Access
+\* ------------------------------------------------------------ */
+
+.nav-access { font-family: $font-quicksand; font-weight: 700; font-size: 11px; letter-spacing: 0.02em; }
+.nav-access a { text-decoration: none; }
+.nav-access .avatar { display: inline-block; vertical-align: middle; width: 32px; height: 32px; border: 1px solid  #fff; border-radius: 50%; margin-right: 10px; }
+
+$breakpoint-mobile {
+	.nav-access .name { display: none; }
+	.nav-access .avatar { margin-right: 0; }
+}
+
+/* ------------------------------------------------------------ *\
+	Nav Utilities
+\* ------------------------------------------------------------ */
+
+.nav-utilities { font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: #000; margin-top: -3px; }
+.nav-utilities strong { font-weight: 500; }
+.nav-utilities a { text-decoration: none; display: block; border-bottom: 1px dashed #dddddd; padding-left: 5px; }
+.nav-utilities a:hover { color: $color-blue; }
+.nav-utilities a.sort:after { @mixin chevron 7px, 2px, #250844, -7px 0 0 8px, -45deg, 50% 50%, .4s; }
+
+$breakpoint-mobile {
+	.nav-utilities a { display: inline-block; }
+}
+
+/* ------------------------------------------------------------ *\
+	Nav Trigger
+\* ------------------------------------------------------------ */
+
+.nav-trigger { position: relative; display: inline-block; width: 100%; height: 50px; text-decoration: none; }
+.nav-trigger strong { opacity: 0; visibility: hidden; transition: opacity .3s .3s, visibility .3s .3s; color: $color-blue; position: absolute; top: 16px; left: 29px; width: 200px; }
+.nav-trigger span { position: absolute; display: block; height: 3px; width: 23px; background: #fff; transition: top .2s .25s, left .2s .25s, opacity .2s .25s, transform .2s 0s; left: 30px; }
+.nav-trigger span:nth-of-type(1) { top: 20px; }
+.nav-trigger span:nth-of-type(2) { top: 25px; }
+.nav-trigger span:nth-of-type(3) { top: 30px; }
+
+.nav-trigger.active { background: #fff; }
+.nav-trigger.active strong { opacity: 1; visibility: visible; }
+.nav-trigger.active span { transition: background .2s, top .2s, left .2s .3s, opacity .2s, transform .2s .25s; background: $color-blue; left: 170px; }
+    
+.nav-trigger.active span:nth-of-type(3),
+.nav-trigger.active span:nth-of-type(1) { top: 25px; }
+
+.nav-trigger.active span:nth-of-type(2) { opacity: 0; }
+.nav-trigger.active span:nth-of-type(1) { transform: rotate(45deg); }
+.nav-trigger.active span:nth-of-type(3) { transform: rotate(-45deg); }
+
+$breakpoint-mobile {
+	.nav-trigger span { left: 20px; }
+}

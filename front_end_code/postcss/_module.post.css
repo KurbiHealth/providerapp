@@ -1,0 +1,28 @@
+/* ------------------------------------------------------------ *\
+	Posts
+\* ------------------------------------------------------------ */
+
+.posts { list-style: none; }
+
+/* ------------------------------------------------------------ *\
+	Post
+\* ------------------------------------------------------------ */
+
+.post { position: relative; }
+.post:after { @extend clearfix; }
+.post ~ .post { border-top: 1px solid  #eee; padding-top: 18px; margin-top: 7px; }
+.post .post-image { float: left; }
+.post .post-content { overflow: hidden; padding-left: 34px; }
+.post .post-author { font-size: 10px; letter-spacing: 0.08em; margin-bottom: 6px; }
+.post .post-author a { color: $color-blue; text-decoration: none; font-weight: 500; }
+.post .post-author span { color: #666; display: inline-block; vertical-align: middle; margin-left: 4px; }
+.post .post-title { font-size: 12px; font-weight: 300; }
+.post .post-title a { text-decoration: none; }
+.post .post-title strong { font-weight: 500; }
+.post .post-responces { position: absolute; bottom: 8px; right: 10px; color: #666; font-size: 10px; letter-spacing: 0.08em; }
+
+$breakpoint-mobile {
+	.post .post-author span { margin-left: 0; }
+	.post .post-content { padding-left: 15px; }
+	.post .post-responces { position: relative; bottom: 0; right: 0; }
+}

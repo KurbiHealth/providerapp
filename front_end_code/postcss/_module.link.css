@@ -1,0 +1,54 @@
+/* ------------------------------------------------------------ *\
+	Link Back
+\* ------------------------------------------------------------ */
+
+.link-back { font-weight: 500; text-transform: uppercase; text-decoration: none; color: $color-blue; font-size: 10px; letter-spacing: 0.06em; transition: color .3s; }
+.link-back:hover { color: $color-dark-blue; }
+.link-back:before { @mixin chevron 7px, 2px, contentColor, -2px 5px 0 0px, 45deg, 50% 50%, .4s; }
+
+/* ------------------------------------------------------------ *\
+	Link options
+\* ------------------------------------------------------------ */
+
+.link-options { display: inline-block; }
+.link-options span { width: 4px; height: 4px; background: #000; display: block; border-radius: 50%; }
+.link-options span ~ span { margin-top: 3px; }
+
+/* ------------------------------------------------------------ *\
+	Link Close
+\* ------------------------------------------------------------ */
+
+.link-close { display: block; height: 15px; width: 15px; position: relative; }
+
+.link-close:after,
+.link-close:before { content: ''; width: 15px; height: 1px; background: #fff; display: block; position: absolute; top: 7px; }
+
+.link-close:after { transform: rotate(45deg); left: 0; }
+.link-close:before { transform: rotate(-45deg); right: 0; }
+
+/* ------------------------------------------------------------ *\
+	Link Minimize
+\* ------------------------------------------------------------ */
+
+.link-minimize { @mixin chevron 10px, 2px, #fff, -10px 0 0, -45deg, 50% 50%, .4s; }
+.link-minimize.minimized { transform: rotate(135deg); margin-top: -0px; }
+
+/* ------------------------------------------------------------ *\
+	Link Save
+\* ------------------------------------------------------------ */
+
+.link-save { font-size: 10px; text-transform: uppercase; text-decoration: none; font-weight: 500; letter-spacing: 0.03em; color: #545454; margin-left: 5px; }
+.link-save:hover { text-decoration: underline; }
+
+/* ------------------------------------------------------------ *\
+	Link Delete
+\* ------------------------------------------------------------ */
+
+.link-delete { margin-left: auto; }
+
+/* ------------------------------------------------------------ *\
+	Link More
+\* ------------------------------------------------------------ */
+
+.link-more { font-size: 12px; font-weight: 500; text-decoration: none; letter-spacing: 0.06em; }
+.link-more:hover { text-decoration: underline; }
