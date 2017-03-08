@@ -1,0 +1,131 @@
+// Chatlist Module styles
+
+// Include sass project variables
+@import "vars";
+
+// chatlist directive
+chatlist {
+  .header {
+    .action {
+      text-align: right;
+    }
+  }
+
+  .list {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: $light;
+    padding: 26px 4px 16px 4px;
+
+    .item {
+      border: none;
+
+      .row:not(.last) {
+        border-bottom: 1px solid #DDD;
+      }
+
+      .row,.col {
+        padding-top: 0;
+      }
+
+      .publish-time {
+        font-size: 11px;
+        color: $dark;
+        font-weight: 600;
+      }
+
+      .text {
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 12px;
+      }
+      .text.unread {
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.chat-view {
+  .info-block {
+    .card {
+      padding-left: 5%;
+      padding-right: 5%;
+      padding-top: 5%;
+
+      .item {
+        border: none!important;
+      }
+
+      .item-avatar {
+        margin: 0;
+        padding-bottom: 0;
+        position: relative;
+
+        .button {
+          font-size: 22px;
+          position: absolute;
+          top: 1%;
+          right: 2%;
+        }
+      }
+
+      .item-body {
+        margin-top: 0;
+        padding-top: 0;
+
+        p {
+          margin-top: 0;
+          padding-top: 0;
+          padding: 10px;
+          font-size: 16px;
+        }
+      }
+
+      .item-details {
+        margin-top: 0;
+        padding-top: 0;
+
+        .row {
+          max-width: 90%;
+          padding: 0;
+        }
+        .col {
+          background-color: $gray;
+          margin: 5px;
+          padding: 10px;
+          font-size: 12px;
+          font-weight: bold;
+        }
+      }
+
+      .item-action {
+        margin-top: 0;
+        padding-top: 0;
+        .button {
+        }
+      }
+    }
+
+    .chatroom-replies {
+      .subdued {
+        color: $providerapp-color2;
+
+        .icon {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+body.mobile {
+  .item-details {
+    .col {
+      span,p {
+        font-size: 2.5vmin!important;
+      }
+    }
+  }
+}

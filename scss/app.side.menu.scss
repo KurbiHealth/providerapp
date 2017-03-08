@@ -1,0 +1,99 @@
+// Custom App Sidemenu styles:
+// In order to follow providerApp design guidelines, the default style for an
+// Ionic app was adapted. Here we are re-locating the main app's side menu under
+// the app's topbar. In order to allow this, some of nexts design tweaks are
+// mandatory.
+
+// Include sass project variables
+@import "vars";
+
+// Custom open menu dimensions and behaviour:
+// When running on Web, menu closed it will not hide completely, still showing
+// menu item icons. On mobile will back to common behaviour.
+
+body:not(.menu-open):not(.mobile) {
+   .menu-content.pane {
+     transform: translate3d(75px, 0px, 0px)!important;
+   }
+   .menu.menu-left {
+     .bar.bar-header {
+       background-color: $providerapp-color2!important;
+       .title,.button {
+         color: $light!important;
+       }
+     }
+
+     .title {
+       display: none;
+     }
+     .item {
+       span {
+         display: none;
+       }
+     }
+   }
+}
+
+// when opened
+body.menu-open {
+  .menu-content.pane {
+    transform: translate3d(200px, 0px, 0px)!important;
+  }
+  .menu.menu-left {
+   .title {
+     left: 0px!important;
+     font-size: 16px;
+     font-variant: small-caps;
+   }
+   .toggle-menu-button {
+     transform: translate3d(135px, 0px, 0px)!important;
+   }
+  }
+}
+
+// app left side menu, under topbar
+.menu.menu-left {
+
+  max-width: 200px!important;
+
+  .bar.bar-header {
+    height: 48px!important;
+    border: none;
+
+    background-color: $light;
+    .title,.button {
+      color: $providerapp-color2;
+    }
+  }
+
+  .toggle-menu-button {
+    padding: 0 16px;
+  }
+
+  ion-content {
+    padding-top: 20px;
+    background-color: $providerapp-color2;
+    color: $light;
+
+    * {
+      background-color: $providerapp-color2;
+      color: $light;
+    }
+
+    .item {
+      border: none;
+      padding-top: 10px;
+
+      i.icon {
+        font-size: 30px;
+        padding: 0 8px;
+      }
+      span {
+        vertical-align: super;
+        font-variant: small-caps;
+        font-weight: bold;
+        padding-left: 8px;
+      }
+    }
+  }
+}

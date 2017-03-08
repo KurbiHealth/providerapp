@@ -1,0 +1,43 @@
+<ion-side-menus enable-menu-with-back-views="false">
+
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent">
+
+    </ion-nav-view>
+  </ion-side-menu-content>
+
+
+  <ion-side-menu side="left">
+    <ion-header-bar align-title="left" ng-show="$root.web">
+      <button menu-toggle="left" class="button button-icon icon ion-android-menu toggle-menu-button"></button>
+      <h1 class="title">close menu</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-list>
+        <ion-item href="#/app/chats" ng-click="vm.toggleSideMenu()">
+          <i class="icon ion-chatbubbles"></i>
+          <span>chats</span>
+        </ion-item>
+        <ion-item href="#/app/posts" ng-click="vm.toggleSideMenu()">
+          <i class="icon ion-ios-paper-outline"></i>
+          <span>posts</span>
+        </ion-item>
+        <ion-item href="#/app/notifications" ng-click="vm.toggleSideMenu()">
+          <i class="icon ion-flash"></i>
+          <span>notifications</span>
+        </ion-item>
+        <ion-item href="#/app/contacts" ng-click="vm.toggleSideMenu()">
+          <i class="icon ion-person"></i>
+          <span>contacts</span>
+        </ion-item>
+        <ion-item menu-close ng-click="vm.signout()">
+          <i class="icon ion-log-out"></i>
+          <span>Sign out</span>
+        </ion-item>
+
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

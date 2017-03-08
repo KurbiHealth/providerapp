@@ -1,0 +1,102 @@
+// Main app ui styles:
+// In order to follow providerApp design guidelines, the default style for an
+// Ionic app was adapted. Here we are re-locating the main app's side menu under
+// the app's topbar. In order to allow this, some of nexts design tweaks are
+// mandatory.
+
+// Include sass project variables
+@import "vars";
+
+// Place all app view-container under custom main-app-bar
+.view-container {
+  .pane.view {
+    top: 60px;
+    margin-top: 0;
+  }
+}
+
+// main application topbar (customized, not included on Ionic material design)
+.main-app-bar {
+  background-color: $providerapp-color1!important;
+  height: 60px;
+
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+
+  padding: 0 10px;
+}
+
+// App's header directives:
+
+// Trend shows <TREND> brand name at left when running on web (wide screen app).
+// While runnin on mobile platforms it will show only Side Menu Toggle Button.
+trend {
+  display: flex;
+  align-items: center;
+  width: 20%;
+
+  .button {
+    color: $light;
+  }
+
+  .trend-name {
+    font-size: 26px;
+    color: $light;
+    display: inline;
+  }
+}
+
+// Searchbar shows main search tool centered in header, always visible.
+searchbar {
+  width: 60%;
+
+  .list {
+    background-color: transparent;
+    border-radius: 15px;
+    margin: auto;
+
+    .item-input {
+      width: 100%;
+      height: 30px;
+    }
+  }
+}
+
+// Currentavatar will show Avatar thumbnail & current User's name when running
+// on web, and it will show only thumbnail on mobile platforms.
+currentavatar {
+  width: 20%;
+
+  .item {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+
+    background-color: transparent;
+    border: none!important;
+    padding: 5px;
+    float: right;
+
+    img {
+      max-height: 29px;
+      border-radius: 50%;
+      border: solid 1px $light;
+      margin: 5px;
+    }
+
+    span {
+      padding: 5px;
+      font-weight: 400;
+      color: $light;
+    }
+  }
+}

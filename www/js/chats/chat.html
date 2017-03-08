@@ -1,0 +1,73 @@
+<ion-view hide-nav-bar="true" class="chat-view">
+
+  <ion-content has-header="false">
+
+    <div class="info-block">
+
+      <div class="list card">
+
+        <div class="item item-avatar">
+          <img src="img/avatar.png">
+
+          <h2>{{vm.chatroom.user.name}}</h2>
+          <p>{{vm.chatroom.dt_create | amDateFormat:'MM/DD/YYYY, HH:mm'}}</p>
+          <a class="button button-icon ion-android-more-vertical"></a>
+        </div>
+
+        <div class="item item-body">
+          <p>
+            {{vm.chatroom.question}}
+          </p>
+        </div>
+
+        <div class="item item-details">
+          <div class="row">
+            <div class="col col-33">
+              <span>SYMPTOM</span><p>{{vm.chatroom.symptom || 'NONE'}}</p>
+            </div>
+            <div class="col col-33">
+              <span>DURATION</span><p>{{vm.chatroom.duration || 'NONE'}}</p>
+            </div>
+            <div class="col col-33">
+              <span>CARE OPTION</span><p>{{vm.chatroom.treatment || 'NONE'}}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item item-action">
+          <button class="button button-full button-positive" ng-class="{'button-small': $root.mobile}">
+            RESPOND TO THIS QUESTION
+          </button>
+        </div>
+
+      </div>
+
+      <div ng-if="!vm.replies.length" class="list card">
+        <div class="item">
+          <h2>Non exitent Replies for this question</h2>
+        </div>
+      </div>
+
+      <div class="list card chatroom-replies" ng-repeat="reply in vm.replies track by $index">
+        <div class="item item-avatar">
+          <img src="img/doctor.png">
+          <h2>{{reply.user.name}}</h2>
+          <p>{{reply.dt_create | amDateFormat:'MM/DD/YYYY, HH:mm'}}</p>
+        </div>
+
+        <div class="item item-body">
+          <p>
+            {{reply.replyText}}
+          </p>
+          <p>
+            <a href="#" class="subdued"><i class="icon ion-heart"></i>{{reply.actions.votes.total}}</a>
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </ion-content>
+
+</ion-view>

@@ -1,0 +1,50 @@
+<ion-view hide-nav-bar="true">
+
+  <ion-pane>
+
+    <ion-tabs class="tabs-top">
+
+      <!-- title="READ CHATS" -->
+      <ion-tab title="From API" href="#/chats/read">
+        <ion-nav-view name="tab-tab2">
+          <ion-content>
+            <chatlist ng-if="chats.real"
+              title="All chats" items="chats.real" filter="false" link-to-all="false">
+            </chatlist>
+          </ion-content>
+        </ion-nav-view>
+      </ion-tab>
+
+      <!-- title="NEW CHATS" -->
+      <ion-tab title="Example Content" href="#/chats/new">
+        <ion-nav-view name="tab-tab1">
+          <ion-content>
+            <chatlist
+              title="Conversations" items="chats.conversations" filter="true" link-to-all="false">
+            </chatlist>
+
+            <chatlist
+              title="Questions" items="chats.questions" filter="false" link-to-all="true">
+            </chatlist>
+
+            <chatlist
+              title="Replies" items="chats.replies" filter="false" link-to-all="true">
+            </chatlist>
+
+          </ion-content>
+        </ion-nav-view>
+      </ion-tab>
+
+      <!-- <ion-tab title="OPEN CHATS" href="#/chats/open">
+        <ion-nav-view name="tab-tab2">
+          <ion-content>
+
+          </ion-content>
+        </ion-nav-view>
+      </ion-tab> -->
+
+    </ion-tabs>
+
+  </ion-pane>
+
+</ion-view>
