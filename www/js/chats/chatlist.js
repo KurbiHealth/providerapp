@@ -45,7 +45,7 @@
         }
 
         vm.goChat = function(chatroom) {
-          $state.go('app.viewchat',{id: chatroom._id, chatroom: chatroom});
+          $state.go('app.viewchat',{id: chatroom.id, chatroom: chatroom});
         }
     }
 })();

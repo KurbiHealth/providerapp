@@ -49,6 +49,15 @@ chatlist {
 
 .chat-view {
   .info-block {
+    p.loading {
+      margin-top: 64px;
+      text-align: center;
+      // .spinner {
+      //   stroke: $providerapp-color2;
+      //   fill: $providerapp-color2;
+      //   color: $providerapp-color2;
+      // }
+    }
     .card {
       padding-left: 5%;
       padding-right: 5%;
@@ -109,12 +118,23 @@ chatlist {
     }
 
     .chatroom-replies {
-      .subdued {
-        color: $providerapp-color2;
-
+      .col.left {
+        text-align: left;
+      }
+      .col.right {
+        text-align: right;
+      }
+      .button {
+        font-size: 15px;
         .icon {
           margin-right: 5px;
         }
+      }
+      .like {
+        color: $providerapp-color2;
+      }
+      .remove {
+        color: $assertive;
       }
     }
   }

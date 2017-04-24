@@ -35,7 +35,7 @@ angular.module('providerApp', ['ionic', 'angularMoment', 'providerApp.session', 
     views: {
       'menuContent': {
         templateUrl: 'js/chats/chats.html',
-        controller: 'ChatsController as chats'
+        controller: 'ChatsController as vm'
       }
     }
   })

@@ -35,35 +35,49 @@
         </div>
 
         <div class="item item-action">
-          <button class="button button-full button-positive" ng-class="{'button-small': $root.mobile}">
+          <button
+            class="button button-full button-positive"
+            ng-class="{'button-small': $root.mobile}"
+            ng-click="vm.openReplyModal()"
+            >
             RESPOND TO THIS QUESTION
           </button>
         </div>
 
       </div>
 
-      <div ng-if="!vm.replies.length" class="list card">
+      <p ng-show="vm.loadingReplies" class="loading">
+        <ion-spinner icon="spiral" class="spinner-positive"></ion-spinner>
+      </p>
+
+      <div ng-if="vm.noReplies" class="list card">
         <div class="item">
           <h2>Non exitent Replies for this question</h2>
         </div>
       </div>
 
-      <div class="list card chatroom-replies" ng-repeat="reply in vm.replies track by $index">
+      <div
+        class="list card chatroom-replies"
+        ng-if="!vm.noReplies && !vm.loading"
+        ng-repeat="reply in vm.replies track by $index"
+        ng-cloack>
         <div class="item item-avatar">
           <img src="img/doctor.png">
-          <h2>{{reply.user.name}}</h2>
+          <h2>{{reply.user.displayName}}</h2>
           <p>{{reply.dt_create | amDateFormat:'MM/DD/YYYY, HH:mm'}}</p>
         </div>
 
         <div class="item item-body">
-          <p>
-            {{reply.replyText}}
-          </p>
-          <p>
-            <a href="#" class="subdued"><i class="icon ion-heart"></i>{{reply.actions.votes.total}}</a>
-          </p>
+          <p>{{reply.replyText}}</p>
+          <div class="row">
+            <div class="col left">
+              <button class="button button-clear button-small like"><i class="icon ion-heart"></i>{{reply.actions.votes.total}}</a>
+            </div>
+            <div class="col right" ng-if="reply.user.id==$root.user.id" ng-click="vm.removeReply(reply,$index)">
+              <a class="button button-clear button-small remove"><i class="icon ion-trash-b"></i></a>
+            </div>
+          </div>
         </div>
-
       </div>
 
     </div>

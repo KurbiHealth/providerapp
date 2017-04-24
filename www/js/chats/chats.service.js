@@ -10,32 +10,25 @@
     /* @ngInject */
     function ChatsService($q) {
       var chatService = {
+        getConversations: getConversations,
         getUserChats: getUserChats,
         getChatroom: getChatroom,
         getUser: getUser,
-        getChatroomReplies: getChatroomReplies
+        getChatroomReplies: getChatroomReplies,
+        postChatroomReply: postChatroomReply,
+        removeChatroomReply: removeChatroomReply
       };
 
       return chatService;
 
+      function getConversations() {
+        var deffered = $q.defer();
+        var codeblock = new Stamplay.Codeblock("conversations");
+        return codeblock.run();
+      }
+
       function getUserChats(id) {
         var deffered = $q.defer();
-
-        // Stamplay.Object("chatroom")
-        // .get({ owner : id })
-        // .then(function(res) {
-        //   deffered.resolve(res)
-        // }, function(err) {
-        //   deffered.reject(err);
-        // })
-
-        // Stamplay.Object('chatroom')
-        // .findByCurrentUser('owner')
-        // .then(function(response) {
-        //   deffered.resolve(response)
-        // }, function(err) {
-        //   deffered.reject(err);
-        // })
 
         Stamplay.Object('chatroom')
         .get({
@@ -57,7 +50,7 @@
           deffered.resolve(response.data[0])
         }, function(error) {
           deffered.reject(err);
-        })
+        });
         return deffered.promise;
       }
 
@@ -67,7 +60,7 @@
           console.log(res);
         }, function(err) {
           console.error(err);
-        })
+        });
       }
 
       function getChatroomReplies(chatroom_id) {
@@ -76,6 +69,29 @@
         .then(function(response) {
           deffered.resolve(response.data);
         }, function(error) {
+          deffered.reject(err);
+        });
+        return deffered.promise;
+      }
+
+      function postChatroomReply(chatroomreply) {
+        var deffered = $q.defer();
+        Stamplay.Object("chatroomreplies").save(chatroomreply)
+        .then(function(res) {
+          deffered.resolve(res);
+        }, function(err) {
+          deffered.reject(err);
+        });
+        return deffered.promise;
+      }
+
+      function removeChatroomReply(chatroomreplyId) {
+        var deffered = $q.defer();
+        Stamplay.Object("chatroomreplies")
+        .remove(chatroomreplyId)
+        .then(function(res) {
+          deffered.resolve(res.data);
+        }, function(err) {
           deffered.reject(err);
         })
         return deffered.promise;

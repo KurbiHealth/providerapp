@@ -25,6 +25,10 @@ chatlist .list {
     chatlist .list .item .text.unread {
       font-weight: 500; }
 
+.chat-view .info-block p.loading {
+  margin-top: 64px;
+  text-align: center; }
+
 .chat-view .info-block .card {
   padding-left: 5%;
   padding-right: 5%;
@@ -64,10 +68,22 @@ chatlist .list {
     margin-top: 0;
     padding-top: 0; }
 
-.chat-view .info-block .chatroom-replies .subdued {
-  color: dodgerblue; }
-  .chat-view .info-block .chatroom-replies .subdued .icon {
+.chat-view .info-block .chatroom-replies .col.left {
+  text-align: left; }
+
+.chat-view .info-block .chatroom-replies .col.right {
+  text-align: right; }
+
+.chat-view .info-block .chatroom-replies .button {
+  font-size: 15px; }
+  .chat-view .info-block .chatroom-replies .button .icon {
     margin-right: 5px; }
+
+.chat-view .info-block .chatroom-replies .like {
+  color: dodgerblue; }
+
+.chat-view .info-block .chatroom-replies .remove {
+  color: #ef473a; }
 
 body.mobile .item-details .col span, body.mobile .item-details .col p {
   font-size: 2.5vmin !important; }
@@ -10014,7 +10030,7 @@ a.button {
   margin-top: 0; }
 
 .main-app-bar {
-  background-color: #0B0B3B !important;
+  background-color: #0b0b3b !important;
   height: 60px;
   display: -webkit-flex;
   display: flex;
@@ -10070,10 +10086,35 @@ currentavatar {
       font-weight: 400;
       color: #fff; }
 
+.reply-modal {
+  max-height: 50%; }
+  .reply-modal .bar.bar-header {
+    background-color: dodgerblue; }
+    .reply-modal .bar.bar-header .title {
+      color: white;
+      font-size: 16px;
+      font-weight: 400; }
+  .reply-modal ion-content {
+    background-color: white; }
+    .reply-modal ion-content .response-textarea {
+      width: 100%;
+      height: 100%;
+      border: none;
+      resize: none;
+      padding: 10%; }
+  .reply-modal .bar.bar-footer {
+    background-color: white;
+    height: 64px;
+    margin: auto;
+    width: 80%; }
+    .reply-modal .bar.bar-footer .button {
+      height: 36px;
+      min-width: 20%; }
+
 ion-view.signin-view .bar.bar-header .trend,
 ion-view.signup-view .bar.bar-header .trend {
   font-size: 26px;
-  color: #0B0B3B; }
+  color: #0b0b3b; }
 
 ion-view.signin-view ion-content,
 ion-view.signup-view ion-content {

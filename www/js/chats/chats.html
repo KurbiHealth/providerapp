@@ -1,50 +1,77 @@
 <ion-view hide-nav-bar="true">
 
-  <ion-pane>
+  <ion-content>
 
+    <chatlist ng-if="vm.conversations"
+      title="All vm" items="vm.conversations" filter="false" link-to-all="false">
+    </chatlist>
+
+
+    <!-- <div class="info-block" ng-class="{'web': vm.web}" ng-if="vm.conversations">
+
+      <div class="row row-top block-header">
+
+        <div class="col block-title">
+          <label class="item item-input">
+            <div class="input-label item-label">Conversations ({{vm.size}})</div>
+          </label>
+        </div>
+
+        <div class="col block-action">
+
+          <listfilter ng-if="vm.filter"></listfilter>
+
+          <label class="item item-input" ng-if="vm.linkToAll">
+            <a class="input-label item-label" href="#">View All</a>
+          </label>
+
+        </div>
+      </div>
+
+      <div class="list">
+        <a class="item" ng-repeat="item in vm.conversations" ng-click="vm.goChat(item)">
+          <div class="row" ng-class="{'last': $last}">
+            <div class="col col-20 publish-time" am-time-ago="item.dt_create"></div>
+              <div class="col text"
+                ng-class="{'unread': !item.read}"
+                >{{item.text}}
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div> -->
+
+  </ion-content>
+
+  <!-- <ion-pane>
     <ion-tabs class="tabs-top">
-
-      <!-- title="READ CHATS" -->
-      <ion-tab title="From API" href="#/chats/read">
+      <ion-tab title="From API" href="#/vm/read">
         <ion-nav-view name="tab-tab2">
           <ion-content>
-            <chatlist ng-if="chats.real"
-              title="All chats" items="chats.real" filter="false" link-to-all="false">
+            <chatlist ng-if="vm.conversations"
+              title="All vm" items="vm.conversations" filter="false" link-to-all="false">
             </chatlist>
           </ion-content>
         </ion-nav-view>
       </ion-tab>
-
-      <!-- title="NEW CHATS" -->
-      <ion-tab title="Example Content" href="#/chats/new">
+      <ion-tab title="Example Content" href="#/vm/new">
         <ion-nav-view name="tab-tab1">
           <ion-content>
             <chatlist
-              title="Conversations" items="chats.conversations" filter="true" link-to-all="false">
+              title="Conversations" items="vm.conversations" filter="true" link-to-all="false">
             </chatlist>
-
             <chatlist
-              title="Questions" items="chats.questions" filter="false" link-to-all="true">
+              title="Questions" items="vm.questions" filter="false" link-to-all="true">
             </chatlist>
-
             <chatlist
-              title="Replies" items="chats.replies" filter="false" link-to-all="true">
+              title="Replies" items="vm.replies" filter="false" link-to-all="true">
             </chatlist>
-
           </ion-content>
         </ion-nav-view>
       </ion-tab>
-
-      <!-- <ion-tab title="OPEN CHATS" href="#/chats/open">
-        <ion-nav-view name="tab-tab2">
-          <ion-content>
-
-          </ion-content>
-        </ion-nav-view>
-      </ion-tab> -->
-
     </ion-tabs>
-
-  </ion-pane>
+  </ion-pane> -->
 
 </ion-view>

@@ -5,11 +5,12 @@
         .module('providerApp.chats')
         .controller('ChatController', ChatController);
 
-    ChatController.$inject = ['$stateParams','ChatsService'];
+    ChatController.$inject = ['$scope','$rootScope','$stateParams','ChatsService','$ionicModal','$timeout'];
 
     /* @ngInject */
-    function ChatController($stateParams,ChatsService) {
+    function ChatController($scope,$rootScope,$stateParams,ChatsService,$ionicModal,$timeout) {
         var vm = this;
+        var anonymous = { id: 1, name: "anonymous", displayName: "Anonymous", ssn: "00000" };
 
         if($stateParams.chatroom) {
           vm.chatroom = $stateParams.chatroom;
@@ -26,14 +27,20 @@
           console.log('Nada que buscar');
         }
 
+        $ionicModal.fromTemplateUrl('js/chats/reply.modal.html', {
+          scope: $scope,
+          animation: 'slide-in-up'
+        }).then(function(modal) {
+          vm.replyModal = modal;
+        });
 
         function activate() {
-          console.log(vm.chatroom);
+          vm.loadingReplies = true;
+
           for (var i = 0; i < vm.chatroom.messages.length; i++) {
             // user id
             if(vm.chatroom.messages[i].source==='patient') {
               vm.chatroom.user_id = vm.chatroom.messages[i].message.userId;
-              console.log('User ID', vm.chatroom.user_id);
             }
 
             // question
@@ -58,58 +65,86 @@
           }
 
           // replies
-          ChatsService.getChatroomReplies(vm.chatroom._id)
+          ChatsService.getChatroomReplies(vm.chatroom.id)
           .then(function(replies) {
-            for (var i = 0; i < replies.length; i++) {
-              if(!replies[i].user) {
-                replies[i].user = {name:'Anonymous'};
-              }
+            vm.replies = [];
+            vm.loadingReplies = false;
+
+            if(!replies.length) {
+              vm.noReplies = true;
+            } else {
+              angular.forEach(replies, function(reply, key) {
+                reply.key = key;
+                if(reply.owner) {
+                  Stamplay.User.get({ _id : reply.owner })
+                  .then(function(res) {
+                    reply.user = res.data[0];
+                    $rootScope.$apply(function(){
+                      vm.replies.push(reply);
+                    });
+                  }, function(err) {
+                    $rootScope.$apply(function(){
+                      vm.replies.push(reply);
+                    });
+                  });
+                } else {
+                  reply.user = anonymous;
+                  vm.replies.push(reply);
+                }
+              }, []);
             }
-            vm.replies = replies;
           }, function(error) {
             console.error(error);
           });
 
-          // ChatsService.getUser(chatroom.user_id)
-          // .then(function(response) {
-          //   console.log(response);
-          // });
-
-          vm.chatroom.user = { id: 1, name: "Anonymous", ssn: "58764" };
+          vm.chatroom.user = anonymous;
           vm.chatroom.published = "08/18/2016, 10:23";
           vm.chatroom.read = false;
-
-
-
-          // just a text
-          var ipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
-          vm.replies = [
-            {
-              id: 1,
-              user: { id: 1, name: "User Name 2", company: "Company Name 1" },
-              published: "8hrs Ago",
-              text: ipsum,
-              read: false,
-              likes: 11
-            },{
-              id: 2,
-              user: { id: 2, name: "User Name 3", company: "Company Name 2" },
-              published: "8hrs Ago",
-              text: ipsum,
-              read: false,
-              likes: 10
-            },{
-              id: 3,
-              user: { id: 1, name: "User Name 3", company: "Company Name 2" },
-              published: "8hrs Ago",
-              text: ipsum,
-              read: false,
-              likes: 2
-            }
-          ];
-
-
         }
+
+        vm.sendReply = function() {
+          var reply = {
+            chatRoomId: vm.chatroom.id,
+            replyText: vm.replytext
+          };
+          if(vm.chatroom.userVariables && vm.chatroom.userVariables.email) {
+            reply.recipient = vm.chatroom.userVariables.email;
+          }
+          ChatsService.postChatroomReply(reply)
+          .then(function(reply) {
+            reply.user = $rootScope.user;
+            reply.key = vm.replies.length;
+            vm.noReplies = false;
+            $timeout(function() {
+              $scope.$apply(function(){
+                vm.replies.push(reply);
+              });
+            });
+          }, function(error) {
+            console.error(error);
+          });
+          vm.replyModal.hide();
+        }
+
+        vm.openReplyModal = function() {
+          vm.replytext = '';
+          vm.replyModal.show();
+        };
+        vm.closeReplyModal = function() {
+          vm.replyModal.hide();
+        };
+
+        vm.removeReply = function(reply,index) {
+          ChatsService.removeChatroomReply(reply.id)
+          .then(function(response) {
+            vm.replies.splice(index,1);
+            if(!vm.replies.length) {
+              vm.noReplies = true;
+            }
+          }, function(error) {
+            console.error(error);
+          });
+        }
+
     }
 })();
