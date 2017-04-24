@@ -22,7 +22,7 @@
         function activate() {
           ChatsService.getConversations()
           .then(function(response) {
-            console.log('ya');
+            console.log(response);
             vm.conversations = response.conversations;
             vm.size = response.size;
           }, function(error) {

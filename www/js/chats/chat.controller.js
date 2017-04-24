@@ -37,32 +37,27 @@
         function activate() {
           vm.loadingReplies = true;
 
-          for (var i = 0; i < vm.chatroom.messages.length; i++) {
-            // user id
-            if(vm.chatroom.messages[i].source==='patient') {
-              vm.chatroom.user_id = vm.chatroom.messages[i].message.userId;
-            }
-
-            // question
-            if(vm.chatroom.messages[i].source==='patient' && vm.chatroom.messages[i].message.qCode==='ask for email') {
-              vm.chatroom.question = vm.chatroom.messages[i].message.body.text;
-            }
-
-            // symptom
-            if(vm.chatroom.messages[i].source==='patient' && vm.chatroom.messages[i].message.qCode==='get symptom') {
-              vm.chatroom.symptom = vm.chatroom.messages[i].message.body.text;
-            }
-
-            // duration
-            if(vm.chatroom.messages[i].source==='patient' && vm.chatroom.messages[i].message.qCode==='get duration') {
-              vm.chatroom.duration = vm.chatroom.messages[i].message.body.text;
-            }
-
-            // treatment
-            if(vm.chatroom.messages[i].source==='patient' && vm.chatroom.messages[i].message.qCode==='get treatment') {
-              vm.chatroom.treatment = vm.chatroom.messages[i].message.body.text;
-            }
-          }
+          // for (var i = 0; i < vm.chatroom.messages.length; i++) {
+          //   if(vm.chatroom.messages[i].source==='patient') {
+          //     vm.chatroom.user_id = vm.chatroom.messages[i].message.userId;
+          //   }
+          //
+          //   if(vm.chatroom.messages[i].source==='patient' && vm.chatroom.messages[i].message.qCode==='ask for email') {
+          //     vm.chatroom.question = vm.chatroom.messages[i].message.body.text;
+          //   }
+          //
+          //   if(vm.chatroom.messages[i].source==='patient' && vm.chatroom.messages[i].message.qCode==='get symptom') {
+          //     vm.chatroom.symptom = vm.chatroom.messages[i].message.body.text;
+          //   }
+          //
+          //   if(vm.chatroom.messages[i].source==='patient' && vm.chatroom.messages[i].message.qCode==='get duration') {
+          //     vm.chatroom.duration = vm.chatroom.messages[i].message.body.text;
+          //   }
+          //
+          //   if(vm.chatroom.messages[i].source==='patient' && vm.chatroom.messages[i].message.qCode==='get treatment') {
+          //     vm.chatroom.treatment = vm.chatroom.messages[i].message.body.text;
+          //   }
+          // }
 
           // replies
           ChatsService.getChatroomReplies(vm.chatroom.id)

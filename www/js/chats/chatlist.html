@@ -3,30 +3,28 @@
 
   <div class="row row-top block-header">
 
-    <div class="col block-title">
+    <!-- <div class="col block-title">
       <label class="item item-input">
         <div class="input-label item-label">{{vm.title}} ({{vm.unread}})</div>
       </label>
     </div>
 
     <div class="col block-action">
-
       <listfilter ng-if="vm.filter"></listfilter>
-
       <label class="item item-input" ng-if="vm.linkToAll">
         <a class="input-label item-label" href="#">View All</a>
       </label>
+    </div> -->
 
-    </div>
   </div>
 
   <div class="list">
-    <a class="item" ng-repeat="item in vm.items" ng-click="vm.goChat(item)">
+    <a class="item" ng-repeat="item in vm.items | orderBy:'dt_create':true" ng-click="vm.goChat(item)">
       <div class="row" ng-class="{'last': $last}">
         <div class="col col-20 publish-time" am-time-ago="item.dt_create"></div>
           <div class="col text"
             ng-class="{'unread': !item.read}"
-            >{{item.text}}
+            >{{item.userVariables.symptom}}
         </div>
       </div>
     </a>

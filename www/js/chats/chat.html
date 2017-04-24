@@ -9,7 +9,7 @@
         <div class="item item-avatar">
           <img src="img/avatar.png">
 
-          <h2>{{vm.chatroom.user.name}}</h2>
+          <h2>{{vm.chatroom.name || vm.chatroom.email || 'Anonymous'}}</h2>
           <p>{{vm.chatroom.dt_create | amDateFormat:'MM/DD/YYYY, HH:mm'}}</p>
           <a class="button button-icon ion-android-more-vertical"></a>
         </div>
@@ -23,13 +23,13 @@
         <div class="item item-details">
           <div class="row">
             <div class="col col-33">
-              <span>SYMPTOM</span><p>{{vm.chatroom.symptom || 'NONE'}}</p>
+              <span>SYMPTOM</span><p>{{vm.chatroom.userVariables.symptom || 'NONE'}}</p>
             </div>
             <div class="col col-33">
-              <span>DURATION</span><p>{{vm.chatroom.duration || 'NONE'}}</p>
+              <span>DURATION</span><p>{{vm.chatroom.userVariables.symptomDuration || 'NONE'}}</p>
             </div>
             <div class="col col-33">
-              <span>CARE OPTION</span><p>{{vm.chatroom.treatment || 'NONE'}}</p>
+              <span>CARE OPTION</span><p>{{vm.chatroom.userVariables.treatmentType || 'NONE'}}</p>
             </div>
           </div>
         </div>
