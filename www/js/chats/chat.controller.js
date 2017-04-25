@@ -24,7 +24,7 @@
               console.error(error);
             });
         } else {
-          console.log('Nada que buscar');
+          console.log('404 page error');
         }
 
         $ionicModal.fromTemplateUrl('js/chats/reply.modal.html', {
@@ -111,7 +111,7 @@
             reply.key = vm.replies.length;
             vm.noReplies = false;
             $timeout(function() {
-              $scope.$apply(function(){
+              $rootScope.$apply(function(){
                 vm.replies.push(reply);
               });
             });
@@ -122,6 +122,7 @@
         }
 
         vm.openReplyModal = function() {
+          console.log(vm.replies);
           vm.replytext = '';
           vm.replyModal.show();
         };
@@ -129,7 +130,8 @@
           vm.replyModal.hide();
         };
 
-        vm.removeReply = function(reply,index) {
+        vm.removeReply = function(reply) {
+          var index = vm.replies.indexOf(reply);
           ChatsService.removeChatroomReply(reply.id)
           .then(function(response) {
             vm.replies.splice(index,1);

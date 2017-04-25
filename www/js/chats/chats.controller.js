@@ -22,8 +22,9 @@
         function activate() {
           ChatsService.getConversations()
           .then(function(response) {
-            console.log(response);
-            vm.conversations = response.conversations;
+            $rootScope.$apply(function() {
+              vm.conversations = response.conversations;
+            });
             vm.size = response.size;
           }, function(error) {
             console.error(error);

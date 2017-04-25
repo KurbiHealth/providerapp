@@ -24,7 +24,7 @@
         <div class="col col-20 publish-time" am-time-ago="item.dt_create"></div>
           <div class="col text"
             ng-class="{'unread': !item.read}"
-            >{{item.userVariables.symptom}}
+            >{{item.userVariables.symptom || '--No symptom specified--'}}
         </div>
       </div>
     </a>

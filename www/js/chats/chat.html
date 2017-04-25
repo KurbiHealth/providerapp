@@ -59,7 +59,7 @@
       <div
         class="list card chatroom-replies"
         ng-if="!vm.noReplies && !vm.loading"
-        ng-repeat="reply in vm.replies track by $index"
+        ng-repeat="reply in vm.replies | orderBy:'dt_create':true track by $index"
         ng-cloack>
         <div class="item item-avatar">
           <img src="img/doctor.png">
@@ -73,7 +73,7 @@
             <div class="col left">
               <button class="button button-clear button-small like"><i class="icon ion-heart"></i>{{reply.actions.votes.total}}</a>
             </div>
-            <div class="col right" ng-if="reply.user.id==$root.user.id" ng-click="vm.removeReply(reply,$index)">
+            <div class="col right" ng-if="reply.user.id==$root.user.id" ng-click="vm.removeReply(reply)">
               <a class="button button-clear button-small remove"><i class="icon ion-trash-b"></i></a>
             </div>
           </div>
