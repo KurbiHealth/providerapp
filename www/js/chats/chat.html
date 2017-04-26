@@ -16,14 +16,16 @@
 
         <div class="item item-body">
           <p>
-            {{vm.chatroom.question}}
+            {{vm.chatroom.userVariables.symptom}}
+            <!-- {{vm.chatroom.question}} -->
           </p>
         </div>
 
         <div class="item item-details">
           <div class="row">
             <div class="col col-33">
-              <span>SYMPTOM</span><p>{{vm.chatroom.userVariables.symptom || 'NONE'}}</p>
+              <span>SYMPTOM</span>
+              <!-- <p>{{vm.chatroom.userVariables.symptom || 'NONE'}}</p> -->
             </div>
             <div class="col col-33">
               <span>DURATION</span><p>{{vm.chatroom.userVariables.symptomDuration || 'NONE'}}</p>

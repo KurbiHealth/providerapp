@@ -51,16 +51,20 @@ chatlist .list {
       margin-top: 0;
       padding-top: 0;
       padding: 10px;
-      font-size: 16px; }
+      font-size: 16px;
+      color: black;
+      letter-spacing: 1px;
+      line-height: 22px; }
   .chat-view .info-block .card .item-details {
-    margin-top: 0;
-    padding-top: 0; }
+    margin: 16px;
+    padding: 0;
+    margin-top: 0; }
     .chat-view .info-block .card .item-details .row {
-      max-width: 90%;
       padding: 0; }
     .chat-view .info-block .card .item-details .col {
       background-color: #ddd;
       margin: 5px;
+      margin-left: 0;
       padding: 10px;
       font-size: 12px;
       font-weight: bold; }
