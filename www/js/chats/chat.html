@@ -9,7 +9,7 @@
         <div class="item item-avatar">
           <img src="img/avatar.png">
 
-          <h2>{{vm.chatroom.name || vm.chatroom.email || 'Anonymous'}}</h2>
+          <h2>{{vm.chatroom.userVariables.name || vm.chatroom.userVariables.email || 'Anonymous'}}</h2>
           <p>{{vm.chatroom.dt_create | amDateFormat:'MM/DD/YYYY, HH:mm'}}</p>
           <a class="button button-icon ion-android-more-vertical"></a>
         </div>

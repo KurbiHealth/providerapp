@@ -102,9 +102,10 @@
             chatRoomId: vm.chatroom.id,
             replyText: vm.replytext
           };
-          if(vm.chatroom.userVariables && vm.chatroom.userVariables.email) {
-            reply.recipient = vm.chatroom.userVariables.email;
-          }
+          // if(vm.chatroom.userVariables && vm.chatroom.userVariables.email) {
+          //   reply.recipient = vm.chatroom.userVariables.email;
+          // }
+          
           ChatsService.postChatroomReply(reply)
           .then(function(reply) {
             reply.user = $rootScope.user;
