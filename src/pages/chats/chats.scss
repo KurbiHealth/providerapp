@@ -1,0 +1,25 @@
+page-chats {
+
+    .list {
+        width: 90%;
+        max-width: 720px;
+        border: none !important;
+        margin: 5vh auto;
+
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background-color: #fff;
+        
+        .date {
+            font-size: 11px;
+            color: #444;
+            font-weight: 600;
+        }
+
+        .text {
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

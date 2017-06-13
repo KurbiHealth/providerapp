@@ -1,0 +1,50 @@
+page-chatroom {
+
+    .list {
+        width: 90%;
+        max-width: 720px;
+        margin: auto;
+        border: none !important;
+        margin-bottom: 10vh;
+
+        .card {
+            .item {
+                .button {
+                        float: right;
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        color: #999;
+                }
+            }
+
+            .card-content {
+                .symptom-description {
+                    padding: 10px;
+                    font-size: 16px;
+                    color: #666;
+                }
+
+                .symptom-details {
+                    padding: 10px;
+                    .col {
+                        background-color: #ddd;
+                        margin: 5px;
+                        margin-left: 0;
+                        padding: 10px;
+                        font-size: 12px;
+                        font-weight: bold;
+
+                        span,p {
+                            color: #666;
+                        }
+                    }
+                }
+                button.respond-to-question {
+                    margin: 10px;
+                    margin-right: 15px;
+                }
+            }
+        }
+    }
+}

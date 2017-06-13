@@ -1,0 +1,31 @@
+page-chatroomreply {
+
+    .header {
+        height: 44px;
+        .toolbar {
+            .toolbar-background {
+                height: 44px;
+                background-color: dodgerblue;
+            }
+            .toolbar-content {
+                height: 44px;
+                .title {
+                    height: 44px;
+                    .toolbar-title {
+                        font-size: 16px; 
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer {
+        .toolbar-background {
+            background-color: white;
+        }
+        .toolbar-content {
+            text-align: right;
+        }
+    }
+}

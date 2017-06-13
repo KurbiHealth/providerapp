@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-searchbar (ionInput)="getItems($event)">
+    </ion-searchbar>
+    
+    <ion-buttons end>
+      <button ion-button icon-left class="current-session-user">
+        <ion-icon name="contact"></ion-icon>
+        {{this.session.displayName}}
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <button ion-item *ngFor="let chatroom of currentItems" (click)="goChatroomPage(chatroom)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3 *ngIf="chatroom.dt_create" class="date">{{chatroom.dt_create | amTimeAgo}}</ion-col>
+          <ion-col col-9 *ngIf="chatroom.userVariables" class="text">{{chatroom.userVariables.symptom || 'NONE'}}</ion-col>
+          <ion-col col-9 *ngIf="!chatroom.userVariables" class="text">NONE</ion-col>
+        </ion-row>
+      </ion-grid>
+    </button>
+
+  </ion-list>
+</ion-content>

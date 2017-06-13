@@ -1,0 +1,107 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-searchbar (ionInput)="getItems($event)">
+    </ion-searchbar>
+    
+    <ion-buttons end>
+      <button ion-button icon-left class="current-session-user">
+        <ion-icon name="contact"></ion-icon>
+        {{this.session.displayName}}
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 class="bots-action-bar">
+        <button ion-button icon-only clear class="add-bot" (click)="create()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 *ngFor="let chatbox of currentItems; let i = index;">
+        <ion-card class="chatbox-card">
+
+          <!--<ion-card-header>
+            Chatbox #{{i+1}}
+            <button ion-button button-icon clear small>
+                <ion-icon name="trash"></ion-icon>
+              </button>
+          </ion-card-header>-->
+
+          <!--<ion-card-header>
+            <ion-row justify-content-end>
+              <ion-col><h2>Chatbox #{{i+1}}</h2></ion-col>
+              <ion-col align-self-end>
+                <button ion-button button-icon clear>
+                  <ion-icon name="trash"></ion-icon>
+                </button>
+              </ion-col>
+            </ion-row>-->
+
+          <ion-card-header>
+            <h2>Chatbox #{{i+1}}</h2>
+          </ion-card-header>
+
+          <ion-card-content>
+
+            <ion-item-group>
+              <ion-item-divider>Bots
+                <button ion-button button-icon clear small item-end (click)="addBot(i)"><ion-icon name="add"></ion-icon></button>
+              </ion-item-divider>
+
+              <ion-item *ngFor="let botname of chatbox.bots" class="botname">
+                <p>
+                  <span>{{botname}}</span>
+                  <button ion-button button-icon color="danger" clear small item-end (click)="removeBot(i,botname)">
+                    <ion-icon name="close"></ion-icon>
+                  </button>
+                </p>
+              </ion-item>
+
+              <ion-item-divider>Styles
+                <button ion-button button-icon clear small item-end (click)="addStyle(i)"><ion-icon name="add"></ion-icon></button>
+              </ion-item-divider>
+
+              <ion-item *ngFor="let style of chatbox.styles" class="style">
+                <p>
+                  <span>{{style}}</span>
+                  <button ion-button button-icon color="danger" clear small item-end (click)="removeStyle(i,style)">
+                    <ion-icon name="close"></ion-icon>
+                  </button>
+                </p>
+              </ion-item>
+
+            </ion-item-group>
+
+          </ion-card-content>
+
+          <ion-row class="footer">
+            <ion-col>
+              <button ion-button button-icon clear small (click)="delete(i)">
+                <ion-icon name="trash"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
+
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

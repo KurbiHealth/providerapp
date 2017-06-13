@@ -1,0 +1,32 @@
+page-chatboxes {
+    .content {
+        .bots-action-bar {
+            .button.add-bot {
+                float: right;
+            }
+        }
+
+        .chatbox-card {
+            .botname,.style {
+                height: 3em;
+                .label {
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+                p {
+                    display: flex;
+
+                    span {
+                        align-self: center;
+                    }
+                }
+            }
+
+            .footer {
+                .button {
+                    float: right;
+                }
+            }
+        }
+    }
+}

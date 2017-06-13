@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Select Bots</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item *ngFor="let bot of currentItems">
+      <ion-label>{{bot.name}}</ion-label>
+      <ion-checkbox color="dark" [(ngModel)]="bot.selected" (ionChange)="updateBotList(bot)"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons right>
+      <button ion-button (click)="confirm()">Done</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

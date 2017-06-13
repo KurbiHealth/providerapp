@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-searchbar (ionInput)="getItems($event)">
+    </ion-searchbar>
+    
+    <ion-buttons end>
+      <button ion-button icon-left class="current-session-user">
+        <ion-icon name="contact"></ion-icon>
+        {{this.session.displayName}}
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 class="bots-action-bar">
+        <button ion-button icon-only clear class="add-bot" (click)="addItem()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

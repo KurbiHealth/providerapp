@@ -1,0 +1,101 @@
+<!--
+  Generated template for the ChatroomPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-searchbar (ionInput)="getItems($event)">
+    </ion-searchbar>
+    
+    <ion-buttons end>
+      <button ion-button icon-left class="current-session-user">
+        <ion-icon name="contact"></ion-icon>
+        This User
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  
+  <ion-list>
+
+    <ion-card>
+
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="assets/img/avatar.png">
+        </ion-avatar>
+        <h2>{{chat.name || chat.email || 'Anonymous'}}</h2>
+        <p>{{chat.dt_create | amDateFormat:'MM/DD/YYYY, HH:mm'}}</p>
+
+        <button ion-button icon-only clear><ion-icon name="more"></ion-icon></button>
+      </ion-item>
+
+      <ion-card-content>
+        <p class="symptom-description">{{chat.userVariables.symptom}}</p>
+
+        <ion-row class="symptom-details">
+          <ion-col>
+            <span>SYMPTOM</span>
+          </ion-col>
+          <ion-col>
+            <span>DURATION</span><p>{{chat.userVariables.symptomDuration || 'NONE'}}</p>
+          </ion-col>
+          <ion-col>
+            <span>CARE OPTION</span><p>{{chat.userVariables.treatmentType || 'NONE'}}</p>
+          </ion-col>
+          <!--<ion-col center text-center>
+            <ion-note>
+              11h ago
+            </ion-note>
+          </ion-col>-->
+        </ion-row>
+        <ion-row class="action">
+          <button ion-button block class="respond-to-question" (click)="newReply()">Respond to this question</button>
+        </ion-row>
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card *ngFor="let reply of replies; let i = index;">
+
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="assets/img/avatar.png">
+        </ion-avatar>
+        <h2 *ngIf="reply.user && reply.user.id">{{reply.user.displayName || ''}}</h2>
+        <p>{{reply.dt_create | amDateFormat:'MM/DD/YYYY, HH:mm'}}</p>
+      </ion-item>
+
+      <ion-card-content>
+        <p>{{reply.replyText}}</p>
+      </ion-card-content>
+
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left clear small>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>{{reply.actions.votes.total}} Likes</div>
+          </button>
+        </ion-col>
+        <ion-col right text-right *ngIf="reply.user && reply.user.id && reply.user.id==session.id">
+          <button ion-button icon-left clear small (click)="deleteReply(reply,i)">
+            <ion-icon name="trash"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+  </ion-list>
+
+</ion-content>

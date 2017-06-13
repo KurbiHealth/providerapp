@@ -1,0 +1,28 @@
+page-posts {
+    .list {
+        width: 90%;
+        max-width: 720px;
+        margin: 5vh auto;
+        
+        .card {
+            .card-header {
+                font-size: 11px;
+                color: #444;
+                font-weight: 600;
+            }
+            .card-content {
+                p {
+                    color: gray;
+                    margin-top: 10px;
+                }
+            }
+        }
+
+        .text {
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

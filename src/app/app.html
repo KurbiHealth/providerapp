@@ -1,0 +1,44 @@
+<ion-header>
+
+  <!--<ion-navbar>
+
+    <ion-searchbar (ionInput)="getItems($event)">
+    </ion-searchbar>
+    
+    <ion-buttons end>
+      <button ion-button icon-left class="current-session-user">
+        <ion-icon name="contact"></ion-icon>
+        Nada
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>-->
+
+</ion-header>
+
+<ion-split-pane>
+
+  <ion-menu [content]="content">
+    
+    <ion-header>
+      <ion-navbar>
+        <ion-title>Kurbi</ion-title>
+      </ion-navbar>
+    </ion-header>
+
+    <ion-content no-bounce>
+      <ion-list no-lines>
+
+        <ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          <ion-icon name="{{p.icon}}" item-left></ion-icon>
+          {{p.title}}
+        </ion-item>
+
+      </ion-list>
+    </ion-content>
+
+  </ion-menu>
+
+  <ion-nav #content main [root]="rootPage"></ion-nav>
+
+</ion-split-pane>

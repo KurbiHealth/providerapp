@@ -1,0 +1,49 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-searchbar (ionInput)="getItems($event)">
+    </ion-searchbar>
+    
+    <ion-buttons end>
+      <button ion-button icon-left class="current-session-user">
+        <ion-icon name="contact"></ion-icon>
+        {{this.session.displayName}}
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-card *ngFor="let post of currentItems; let i = index;">
+
+      <ion-card-header>
+         {{post.dt_create | amTimeAgo}}
+      </ion-card-header>
+
+      <ion-card-content>
+        <h2>{{post.title}}</h2>
+        <p [innerHTML]="post.body"></p>
+      </ion-card-content>
+
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left clear small>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>{{post.actions.votes.total}} Likes</div>
+          </button>
+        </ion-col>
+      </ion-row>
+
+    </ion-card>
+
+  </ion-list>
+</ion-content>
