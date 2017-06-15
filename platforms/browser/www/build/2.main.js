@@ -48,7 +48,7 @@ BotsPageModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_providers__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BotsPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -94,7 +94,7 @@ var BotsPage = (function () {
 BotsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-bots',template:/*ion-inline-start:"/home/mati/Development/Kurbi/kurbiProviderApp/src/pages/bots/bots.html"*/'<ion-header>\n\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-searchbar (ionInput)="getItems($event)">\n    </ion-searchbar>\n    \n    <ion-buttons end>\n      <button ion-button icon-left class="current-session-user">\n        <ion-icon name="contact"></ion-icon>\n        {{this.session.displayName}}\n      </button>\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 class="bots-action-bar">\n        <button ion-button icon-only clear class="add-bot" (click)="addItem()">\n          <ion-icon name="add"></ion-icon>\n        </button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/home/mati/Development/Kurbi/kurbiProviderApp/src/pages/bots/bots.html"*/,
+        selector: 'page-bots',template:/*ion-inline-start:"/home/mati/Development/Kurbi/providerapp/src/pages/bots/bots.html"*/'<ion-header>\n\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-searchbar (ionInput)="getItems($event)">\n    </ion-searchbar>\n    \n    <ion-buttons end>\n      <button ion-button icon-left class="current-session-user">\n        <ion-icon name="contact"></ion-icon>\n        {{this.session.displayName}}\n      </button>\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 class="bots-action-bar">\n        <button ion-button icon-only clear class="add-bot" (click)="addItem()">\n          <ion-icon name="add"></ion-icon>\n        </button>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/home/mati/Development/Kurbi/providerapp/src/pages/bots/bots.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_providers__["a" /* Bots */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["a" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ModalController */]])
 ], BotsPage);

@@ -79,7 +79,7 @@ var UserMenuPopoverPage = (function () {
 UserMenuPopoverPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-user-menu-popover',template:/*ion-inline-start:"/home/mati/Development/Kurbi/kurbiProviderApp/src/pages/user-menu-popover/user-menu-popover.html"*/'<ion-content padding>\n  <ion-list>\n    <button ion-item (click)="logout()">\n      Logout\n    </button>  \n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/mati/Development/Kurbi/kurbiProviderApp/src/pages/user-menu-popover/user-menu-popover.html"*/,
+        selector: 'page-user-menu-popover',template:/*ion-inline-start:"/home/mati/Development/Kurbi/providerapp/src/pages/user-menu-popover/user-menu-popover.html"*/'<ion-content padding>\n  <ion-list>\n    <button ion-item (click)="logout()">\n      Logout\n    </button>  \n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/mati/Development/Kurbi/providerapp/src/pages/user-menu-popover/user-menu-popover.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
 ], UserMenuPopoverPage);

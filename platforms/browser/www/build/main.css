@@ -24768,17 +24768,12 @@ ion-menu .menu-inner ion-header {
 }
 
 ion-menu .menu-inner ion-header .toolbar {
-  height: 48px !important;
   border: none;
 }
 
 ion-menu .menu-inner ion-header .toolbar .toolbar-title {
   color: white;
   font-size: 26px;
-}
-
-ion-menu ion-content {
-  padding-top: 20px;
 }
 
 ion-menu ion-content .scroll-content {
@@ -24791,7 +24786,10 @@ ion-menu ion-content .list .item {
   color: #fff;
   vertical-align: super;
   font-variant: small-caps;
-  font-weight: bold;
+}
+
+.toolbar .searchbar-ios .searchbar-input {
+  background: white !important;
 }
 
 .toolbar-title-md {
