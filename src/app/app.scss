@@ -20,6 +20,7 @@ $menu-width: 15vw;
 
 ion-nav,ion-menu {
     ion-header {
+
         .toolbar,.toolbar-background {
             background: #0b0b3b !important;
         }
@@ -43,6 +44,7 @@ ion-nav,ion-menu {
 }
 
 .split-pane-visible {
+
     ion-menu {
         min-width: $menu-width!important;
         max-width: $menu-width!important;
@@ -63,9 +65,7 @@ ion-menu {
             background-color: #0b0b3b !important;
 
             .toolbar {
-                height: 48px !important;
                 border: none;
-                // background-color: #fff;
 
                 .toolbar-title {
                     color : white;
@@ -76,7 +76,7 @@ ion-menu {
     }
 
     ion-content {
-        padding-top: 20px;
+        // padding-top: 20px;
 
         .scroll-content {
             overflow: hidden;
@@ -88,15 +88,19 @@ ion-menu {
                 background-color: dodgerblue;
                 color: #fff;
 
-                    vertical-align: super;
-                    font-variant: small-caps;
-                    font-weight: bold;
-                //     padding-left: 8px;
+                vertical-align: super;
+                font-variant: small-caps;
+                // font-weight: bold;
+                // padding-left: 8px;
                 // padding: 30px;
                 // padding-bottom: 0;
             }
         }
     }
+}
+
+.toolbar .searchbar-ios .searchbar-input {
+    background: white!important;
 }
 
 // Centering Title trick for Ionic 2 (no matter platform)

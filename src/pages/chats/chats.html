@@ -1,22 +1,21 @@
 <ion-header>
-
   <ion-navbar>
+    
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-
-    <ion-searchbar (ionInput)="getItems($event)">
-    </ion-searchbar>
     
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+
     <ion-buttons end>
       <button ion-button icon-left class="current-session-user">
         <ion-icon name="contact"></ion-icon>
-        {{this.session.displayName}}
+        {{session.displayName}}
       </button>
+      <!--<session-button></session-button>-->
     </ion-buttons>
 
   </ion-navbar>
-
 </ion-header>
 
 <ion-content>

@@ -3,8 +3,11 @@ import { Platform, Nav, Config } from 'ionic-angular';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
 
 import { FirstRunPage } from '../pages/pages';
+import { MainPage } from '../pages/pages';
+
 import { LoginPage } from '../pages/login/login';
 import { ChatsPage } from '../pages/chats/chats';
 import { PostsPage } from '../pages/posts/posts';
@@ -16,19 +19,30 @@ import { TranslateService } from '@ngx-translate/core'
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = FirstRunPage;
-
+  rootPage: {};
+  session: {};
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
     { icon: 'chatbubbles', title: 'chats', component: ChatsPage },
     { icon: 'document', title: 'posts', component: PostsPage },
-    { icon: 'contact', title: 'bots', component: ChatboxesPage },
-    { icon: 'login', title: 'login', component: LoginPage }
+    { icon: 'code-working', title: 'bots', component: ChatboxesPage }
   ]
 
-  constructor(private translate: TranslateService, platform: Platform, private config: Config, statusBar: StatusBar, splashScreen: SplashScreen) {
-    this.initTranslate();
+  constructor(private translate: TranslateService, platform: Platform, private config: Config, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
+    // this.initTranslate();
+    this.session = { displayName: ''};
+
+    this.storage.get('gokurbi.com-user').then((userObject) => {
+      if(userObject) {
+        this.session = JSON.parse(userObject);
+        this.rootPage = MainPage;
+        this.pages.push({ icon: 'log-out', title: 'logout', component: LoginPage });
+      } else {
+        this.session = null;
+        this.rootPage = FirstRunPage;
+      }
+    });
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -54,6 +68,16 @@ export class MyApp {
   }
 
   openPage(page) {
+    if(page.title=='logout') {
+      //logout menu button clicked
+
+      this.storage.remove('gokurbi.com-user').then((resp) => {
+        console.log(resp);
+        console.log('user storage removed');
+        this.session = null;
+      });
+    }
+    
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);

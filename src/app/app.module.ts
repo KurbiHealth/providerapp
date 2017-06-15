@@ -21,8 +21,8 @@ import { ChatboxesPageModule } from '../pages/chatboxes/chatboxes.module';
 import { SelectBotModalPageModule } from '../pages/select-bot-modal/select-bot-modal.module';
 import { SelectStyleModalPageModule } from '../pages/select-style-modal/select-style-modal.module';
 
-// import { BotsPage } from '../pages/bots/bots';
-// import { SelectElementPage } from '../pages/select-element/select-element';
+// import { SessionButtonComponentModule } from '../components/session-button/session-button.module';
+// import { SessionButtonComponent } from '../components/session-button/session-button';
 
 import { Api } from '../providers/api';
 import { Chats } from '../providers/chats';
@@ -69,6 +69,7 @@ export function provideSettings(storage: Storage) {
  */
 let pages = [
   MyApp
+  // ,SessionButtonComponent
   // LoginPage,
   // ChatsPage,
   // PostsPage,
@@ -108,6 +109,8 @@ export function providers() {
     BrowserModule,
     HttpModule,
     
+    // SessionButtonComponentModule,
+
     LoginPageModule,
     SignupPageModule,
     ChatsPageModule,
