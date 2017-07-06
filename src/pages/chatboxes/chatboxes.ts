@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ModalController, NavParams } from 'ionic-angular';
 
-// import { SelectElementPage } from '../select-element/select-element';
+import { EditChatboxPage } from '../edit-chatbox/edit-chatbox';
+
 import { SelectBotModalPage } from '../select-bot-modal/select-bot-modal';
 import { SelectStyleModalPage } from '../select-style-modal/select-style-modal';
 
 import { Chatbox } from '../../providers/providers';
+import { Styles } from '../../providers/providers';
 
 import { Storage } from '@ionic/storage';
 
@@ -24,20 +26,21 @@ export class ChatboxesPage {
   session: any;
   currentItems: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public chatbox: Chatbox, public storage: Storage, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public chatbox: Chatbox, public styles: Styles, public storage: Storage, public modalCtrl: ModalController) {
+    this.currentItems = [];
     this.session = { id: '', displayName: '' };
     this.storage.get('gokurbi.com-user').then((userObject) => {
       this.session = JSON.parse(userObject);
 
       this.chatbox.query(null,this.session.id).subscribe((resp) => {
-        this.currentItems = resp.data;
-
-        // this.currentItems.push(resp.data[0]);
-        // this.currentItems.push(resp.data[0]);
-        // this.currentItems.push(resp.data[0]);
-        // this.currentItems.push(resp.data[0]);
-        // this.currentItems.push(resp.data[0]);
-        // this.currentItems.push(resp.data[0]);
+        for (let index = 0; index < resp.data.length; index++) {
+          this.styles.query(resp.data[index].styles.toString()).subscribe((styleResp) => {
+            resp.data[index].styleImage = styleResp.image;
+            this.currentItems.push(resp.data[index]);
+          }, (err) => {
+            console.error("todo mal");
+          });
+        }
         
       }, (err) => {
         console.error("todo mal");
@@ -50,15 +53,61 @@ export class ChatboxesPage {
   }
 
   create() {
-    this.chatbox.new().subscribe((resp) => {
-      
-      if(!resp.bots) resp.bots = [];
-      if(!resp.styles) resp.styles = [];
+    let replyModal = this.modalCtrl.create(EditChatboxPage, { new: true } );
+    replyModal.onDidDismiss(selection => {
+      if (selection) {
+        
+        var styleImage = selection.styleImage;
 
-      this.currentItems.push(resp);
-    }, (err) => {
-      console.error("todo mal");
-    });
+        let newChatbox = {
+          owner: this.session.id,
+          name: selection.name,
+          bots: selection.bots.toString(),
+          styles: selection.styles
+        };
+
+        this.chatbox.new(newChatbox).subscribe((resp) => {
+          resp.styleImage = styleImage;
+          this.currentItems.push(resp);
+        }, (err) => {
+          console.error("todo mal");
+        });
+      }
+    })
+    replyModal.present();
+  }
+
+  update(index) {
+    let replyModal = this.modalCtrl.create(EditChatboxPage,{ chatbox: this.currentItems[index] });
+    replyModal.onDidDismiss(resp => {
+      if (resp) {
+
+        if(resp=="delete") {
+          this.delete(index);
+
+        } else {
+
+        var styleImage = resp.styleImage;
+
+        let updateChatbox = {
+          _id: this.currentItems[index]._id,
+          owner: this.currentItems[index].owner,
+          name: resp.name,
+          bots: resp.bots,
+          styles: resp.styles
+        };
+        
+        this.chatbox.update(updateChatbox).subscribe((resp) => {
+          resp.styleImage = styleImage;
+          this.currentItems[index] = resp;
+        }, (err) => {
+          console.error("todo mal");
+        });
+        }
+      }
+
+    })
+    replyModal.present();
   }
 
   delete(index){

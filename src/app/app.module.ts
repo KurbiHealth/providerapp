@@ -18,6 +18,11 @@ import { ChatroomPageModule } from '../pages/chatroom/chatroom.module';
 import { ChatroomreplyPageModule } from '../pages/chatroomreply/chatroomreply.module';
 import { PostsPageModule } from '../pages/posts/posts.module';
 import { ChatboxesPageModule } from '../pages/chatboxes/chatboxes.module';
+import { EditChatboxPageModule } from '../pages/edit-chatbox/edit-chatbox.module';
+
+import { ChatstylePageModule } from '../pages/chatstyle/chatstyle.module';
+
+
 import { SelectBotModalPageModule } from '../pages/select-bot-modal/select-bot-modal.module';
 import { SelectStyleModalPageModule } from '../pages/select-style-modal/select-style-modal.module';
 
@@ -120,7 +125,8 @@ export function providers() {
     ChatboxesPageModule,
     SelectBotModalPageModule,
     SelectStyleModalPageModule,
-    ChatboxesPageModule,
+    EditChatboxPageModule,
+    ChatstylePageModule,
 
     TranslateModule.forRoot({
       loader: {

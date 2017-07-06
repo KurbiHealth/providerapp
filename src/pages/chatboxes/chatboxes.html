@@ -11,7 +11,7 @@
     <ion-buttons end>
       <button ion-button icon-left class="current-session-user">
         <ion-icon name="contact"></ion-icon>
-        {{this.session.displayName}}
+        <span class="username">{{session.displayName}}</span>
       </button>
     </ion-buttons>
 
@@ -23,9 +23,12 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col col-12 class="bots-action-bar">
-        <button ion-button icon-only clear class="add-bot" (click)="create()">
-          <ion-icon name="add"></ion-icon>
+      <ion-col col-8 class="bots-action-bar">
+        <h1>Active Accounts</h1>
+      </ion-col>
+      <ion-col col-4 class="bots-action-bar">
+        <button ion-button positive class="add-bot" (click)="create()">New Account
+          <!--<ion-icon name="add"></ion-icon>-->
         </button>
       </ion-col>
     </ion-row>
@@ -33,28 +36,21 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col col-4 *ngFor="let chatbox of currentItems; let i = index;">
-        <ion-card class="chatbox-card">
+      <ion-col col-sm-4 *ngFor="let chatbox of currentItems; let i = index;">
 
-          <!--<ion-card-header>
-            Chatbox #{{i+1}}
-            <button ion-button button-icon clear small>
-                <ion-icon name="trash"></ion-icon>
-              </button>
-          </ion-card-header>-->
+        <ion-card (click)="update(i)">
+          <img src="{{chatbox.styleImage}}"/>
+          <ion-card-content>
+            <ion-card-title>
+              {{chatbox.name || "no name"}}
+            </ion-card-title>
+            <p>Created: {{chatbox.dt_create | date: 'longDate'}}</p>
+          </ion-card-content>
+        </ion-card>
 
-          <!--<ion-card-header>
-            <ion-row justify-content-end>
-              <ion-col><h2>Chatbox #{{i+1}}</h2></ion-col>
-              <ion-col align-self-end>
-                <button ion-button button-icon clear>
-                  <ion-icon name="trash"></ion-icon>
-                </button>
-              </ion-col>
-            </ion-row>-->
-
+        <!--<ion-card class="chatbox-card">
           <ion-card-header>
-            <h2>Chatbox #{{i+1}}</h2>
+            <h2>{{chatbox.name || "no name"}}</h2>
           </ion-card-header>
 
           <ion-card-content>
@@ -98,7 +94,7 @@
             </ion-col>
           </ion-row>
 
-        </ion-card>
+        </ion-card>-->
 
       </ion-col>
     </ion-row>

@@ -13,8 +13,10 @@ export class Api {
   constructor(public http: Http, public storage: Storage) {
 
     this.storage.get('gokurbi.com-jwt').then((token) => {
-      this.headers = new Headers({ 'x-stamplay-jwt': token });
-      this.options = new RequestOptions({ headers: this.headers });
+      if(token) {
+        this.headers = new Headers({ 'x-stamplay-jwt': token });
+        this.options = new RequestOptions({ headers: this.headers });
+      }
     });
   }
 
@@ -36,6 +38,7 @@ export class Api {
   }
 
   post(endpoint: string, body: any, options?: RequestOptions) {
+    this.options = null;
     return this.http.post(this.url + '/' + endpoint, body, this.options);
   }
 

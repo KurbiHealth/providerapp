@@ -18,8 +18,8 @@ export class Chatbox {
     }
   }
 
-  new() {
-    return this.api.post('api/cobject/v1/chatbox',{}).map(resp => resp.json());
+  new(chatbox) {
+    return this.api.post('api/cobject/v1/chatbox',chatbox).map(resp => resp.json());
   }
 
   delete(chatboxId) {

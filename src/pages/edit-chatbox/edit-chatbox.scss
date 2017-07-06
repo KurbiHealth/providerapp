@@ -1,0 +1,29 @@
+page-edit-chatbox {
+
+    .label {
+        font-size: 16px;
+    }
+    .item.styles {
+        text-align: center;
+        margin: 20px auto;
+
+        .label {
+            margin: 0;
+        }
+
+        ion-slide {
+            margin: auto;
+        }
+        .col {
+            align-self: center;
+        }
+        .card {
+            min-height: 100px;
+            margin: auto;
+        }
+        .card.selected {
+            box-shadow: 0 1px 1px #32db64, 0 1px 1px #32db64;
+            border: 2px solid #32db64;
+        }
+    }
+}

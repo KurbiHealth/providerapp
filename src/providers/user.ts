@@ -33,6 +33,24 @@ export class User {
     return seq;
   }
 
+  getRole(roleId: string) {
+    let seq = this.api.get('api/user/v1/roles/' + roleId).share();
+
+    seq
+      .map(res => res.json())
+      .subscribe(res => {
+        // If the API returned a successful response, mark the user as logged in
+        if (res.status == 'success') {
+          this._loggedIn(res);
+        } else {
+        }
+      }, err => {
+        console.error('ERROR', err);
+      });
+
+    return seq;
+  }
+
   /**
    * Send a POST request to our signup endpoint with the data
    * the user entered on the form.

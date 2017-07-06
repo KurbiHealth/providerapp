@@ -1,0 +1,90 @@
+<!--<ion-header>
+
+  <ion-navbar>
+    <ion-title>Manage Chatbox</ion-title>
+  </ion-navbar>
+
+</ion-header>-->
+
+
+<ion-content padding>
+
+  <ion-list no-lines>
+<!--
+    <ion-item-divider>
+      Name
+    </ion-item-divider>-->
+
+    <ion-item class="name">
+      <ion-label>Name</ion-label>
+      <ion-input placeholder="Type an unique name for the Chatbox" [(ngModel)]="chatboxName"></ion-input>
+    </ion-item>
+
+    <ion-item-divider>
+      Select a Style
+    </ion-item-divider>
+
+    <ion-item class="styles">
+
+      <ion-spinner *ngIf="!stylesArray.length"></ion-spinner>
+
+      <ion-grid *ngIf="stylesArray.length">
+        <ion-row>
+          
+          <ion-col>
+            <button ion-button icon-only clear (click)="slidePrev()">
+              <ion-icon name="arrow-back"></ion-icon>
+            </button>
+          </ion-col>
+          <ion-col col-8>
+
+            <ion-slides loop>
+              <ion-slide *ngFor="let style of stylesArray">
+                <ion-card [ngClass]="{'selected': style.id==selectedStyle.id}" (click)="selectStyle(style)">
+                  <img *ngIf="style.image" [src]="_DomSanitizer.bypassSecurityTrustUrl(style.image)"/>
+                  <div *ngIf="!style.image" class="card-subtitle">(no image)</div>
+                  <div *ngIf="!style.name" class="card-subtitle">(no name)</div>
+                  <div *ngIf="!style.name" class="card-subtitle">[id:{{style.id}}]</div>
+                  <div *ngIf="style.name" class="card-title">{{style.name}}</div>
+                </ion-card>
+              </ion-slide>
+            </ion-slides>
+
+          </ion-col>
+
+          <ion-col>
+            <button ion-button icon-only clear (click)="slideNext()">
+              <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+          
+        
+    </ion-item>
+
+    <ion-item-divider>
+      Asign one or more Bots
+    </ion-item-divider>
+
+    <ion-item class="bots" *ngFor="let bot of botsArray">
+      <ion-label>{{bot.name}}</ion-label>
+      <ion-checkbox color="secondary" [(ngModel)]="bot.selected" (ionChange)="updateBots()"></ion-checkbox>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button color="danger" (click)="remove()" *ngIf="!newChatbox">Remove</button>
+    </ion-buttons>
+    <ion-buttons right>
+      <button ion-button (click)="cancel()">Cancel</button>
+      <button ion-button color="primary" (click)="confirm()" [disabled]="!(chatboxName.length && selectedStyle.id.length && selectedBots.length)">Done</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

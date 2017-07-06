@@ -5,6 +5,8 @@ import { MainPage } from '../../pages/pages';
 import { Storage } from '@ionic/storage';
 import { User } from '../../providers/user';
 
+import {App} from 'ionic-angular';
+
 // import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -24,11 +26,14 @@ export class LoginPage {
   private loginErrorString: string;
   session: any;
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public app: App,
+    public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
     private viewCtrl: ViewController, public storage: Storage) {
 
+    this.session = {};
     this.loginErrorString = 'Bad credentials, please try again.';
     
     // this.translateService.get('LOGIN_ERROR').subscribe((value) => {
@@ -38,12 +43,25 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
+
     this.user.login(this.account).subscribe((resp) => {
 
-      // Save Stamplay jwt for current app user session
-      this.storage.set('gokurbi.com-jwt', resp.headers.get('x-stamplay-jwt'));
-      this.storage.set('gokurbi.com-user',resp.text()).then((userObject) => {
-        this.navCtrl.setRoot(MainPage);
+      this.session = resp.json();
+      this.user.getRole(this.session.givenRole).subscribe((roleResp) => {
+
+        this.session.role = roleResp.json().name;
+
+        // Save Stamplay jwt for current app user session
+        this.storage.set('gokurbi.com-jwt', resp.headers.get('x-stamplay-jwt'));
+        this.storage.set('gokurbi.com-user',JSON.stringify(this.session)).then((userObject) => {
+          
+          // this.navCtrl.setRoot(MainPage);
+          // this.navCtrl.pop();
+          this.app.getRootNav().setRoot(MainPage);
+        });
+      }, (err) => {
+        
+        console.error("todo mal")
       });
 
     }, (err) => {

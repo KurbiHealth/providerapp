@@ -1,11 +1,30 @@
 page-chatboxes {
+    font-family: 'Poppins', sans-serif!important;
+
     .content {
+
+        ion-grid {
+            width: 90%;
+            max-width: 720px;
+            margin: 5vh auto;
+        }
+
         .bots-action-bar {
             .button.add-bot {
+                margin-top: 2rem;
                 float: right;
             }
         }
 
+        .card {
+            .card-title {
+                font-size: 1.4rem;
+                font-weight: 500;
+            }
+            p {
+                font-size: 1rem;
+            }
+        }
         .chatbox-card {
             .botname,.style {
                 height: 3em;

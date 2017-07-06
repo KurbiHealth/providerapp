@@ -12,6 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import { ChatsPage } from '../pages/chats/chats';
 import { PostsPage } from '../pages/posts/posts';
 import { ChatboxesPage } from '../pages/chatboxes/chatboxes';
+import { ChatstylePage } from '../pages/chatstyle/chatstyle';
 
 import { TranslateService } from '@ngx-translate/core'
 
@@ -26,21 +27,30 @@ export class MyApp {
   pages: any[] = [
     { icon: 'chatbubbles', title: 'chats', component: ChatsPage },
     { icon: 'document', title: 'posts', component: PostsPage },
-    { icon: 'code-working', title: 'bots', component: ChatboxesPage }
+    { icon: 'code-working', title: 'chatboxes', component: ChatboxesPage }
   ]
 
   constructor(private translate: TranslateService, platform: Platform, private config: Config, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
     // this.initTranslate();
-    this.session = { displayName: ''};
+    this.session = null;
 
+
+    this.session = {displayName: '', role: ''};
     this.storage.get('gokurbi.com-user').then((userObject) => {
       if(userObject) {
         this.session = JSON.parse(userObject);
         this.rootPage = MainPage;
+        
+        if(this.session['role']==='admin') {
+          this.pages.push({ icon: 'brush', title: 'styles', component: ChatstylePage });
+        }
+
         this.pages.push({ icon: 'log-out', title: 'logout', component: LoginPage });
+
       } else {
+        // No user session
         this.session = null;
-        this.rootPage = FirstRunPage;
+        this.rootPage = LoginPage;
       }
     });
 
@@ -49,6 +59,18 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+    });
+  }
+
+
+  ionViewWillEnter() {
+    this.session = {displayName: '', role: ''};
+    this.storage.get('gokurbi.com-user').then((userObject) => {
+      if(userObject) {
+        this.session = JSON.parse(userObject);
+      } else {
+        this.session = null;
+      }
     });
   }
 
@@ -72,7 +94,6 @@ export class MyApp {
       //logout menu button clicked
 
       this.storage.remove('gokurbi.com-user').then((resp) => {
-        console.log(resp);
         console.log('user storage removed');
         this.session = null;
       });

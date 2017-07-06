@@ -19,4 +19,8 @@ export class Styles {
     }
   }
 
+  update(style) {
+    return this.api.put('api/cobject/v1/chatstyle/' + style._id, style).map(resp => resp.json());
+  }
+
 }

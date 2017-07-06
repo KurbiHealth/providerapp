@@ -1,2 +1,11 @@
 page-login {
+    text-align: center;
+
+    ion-content {
+        form {
+            margin: auto;
+            margin-top: 10vh;
+            max-width: 720px;
+        }
+    }
 }

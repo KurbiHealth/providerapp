@@ -19,15 +19,21 @@
 
 </ion-header>
 
-<ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-12 class="bots-action-bar">
-        <button ion-button icon-only clear class="add-bot" (click)="addItem()">
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+<ion-content padding>
+
+  <ion-list inset>
+
+    <ion-item *ngFor="let style of currentItems; let i = index;">
+      <ion-label>
+        {{style.name || style.id}}
+      </ion-label>
+      <button ion-button item-end (click)="edit(style,i)">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-item>
+
+  </ion-list>
 
 </ion-content>
+
