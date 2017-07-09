@@ -22,7 +22,6 @@ import { EditChatboxPageModule } from '../pages/edit-chatbox/edit-chatbox.module
 
 import { ChatstylePageModule } from '../pages/chatstyle/chatstyle.module';
 
-
 import { SelectBotModalPageModule } from '../pages/select-bot-modal/select-bot-modal.module';
 import { SelectStyleModalPageModule } from '../pages/select-style-modal/select-style-modal.module';
 

@@ -12,7 +12,14 @@ export class Api {
 
   constructor(public http: Http, public storage: Storage) {
 
+    // this.storage.remove('gokurbi.com-jwt').then((resp) => {
+    //   console.log('user token removed');
+    // });
+
     this.storage.get('gokurbi.com-jwt').then((token) => {
+      
+      console.log(token);
+
       if(token) {
         this.headers = new Headers({ 'x-stamplay-jwt': token });
         this.options = new RequestOptions({ headers: this.headers });

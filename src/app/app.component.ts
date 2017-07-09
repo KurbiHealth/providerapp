@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav, Config } from 'ionic-angular';
+import { Platform, Nav, Config, Events } from 'ionic-angular';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 
-import { FirstRunPage } from '../pages/pages';
+// import { FirstRunPage } from '../pages/pages';
 import { MainPage } from '../pages/pages';
 
 import { LoginPage } from '../pages/login/login';
@@ -27,26 +27,26 @@ export class MyApp {
   pages: any[] = [
     { icon: 'chatbubbles', title: 'chats', component: ChatsPage },
     { icon: 'document', title: 'posts', component: PostsPage },
-    { icon: 'code-working', title: 'chatboxes', component: ChatboxesPage }
+    { icon: 'code-working', title: 'chatboxes', component: ChatboxesPage },
+    { icon: 'log-out', title: 'logout', component: LoginPage }
   ]
 
-  constructor(private translate: TranslateService, platform: Platform, private config: Config, statusBar: StatusBar, splashScreen: SplashScreen, public storage: Storage) {
+  constructor(
+      private translate: TranslateService, 
+      public events: Events,
+      platform: Platform, 
+      private config: Config, 
+      statusBar: StatusBar, 
+      splashScreen: SplashScreen, 
+      public storage: Storage) {
+
     // this.initTranslate();
-    this.session = null;
-
-
     this.session = {displayName: '', role: ''};
+
     this.storage.get('gokurbi.com-user').then((userObject) => {
       if(userObject) {
         this.session = JSON.parse(userObject);
         this.rootPage = MainPage;
-        
-        if(this.session['role']==='admin') {
-          this.pages.push({ icon: 'brush', title: 'styles', component: ChatstylePage });
-        }
-
-        this.pages.push({ icon: 'log-out', title: 'logout', component: LoginPage });
-
       } else {
         // No user session
         this.session = null;
@@ -55,23 +55,28 @@ export class MyApp {
     });
 
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
     });
-  }
 
+    events.subscribe('user:login', (user, role) => {
+      this.session = JSON.parse(user);
+      this.session['role'] = role;
 
-  ionViewWillEnter() {
-    this.session = {displayName: '', role: ''};
-    this.storage.get('gokurbi.com-user').then((userObject) => {
-      if(userObject) {
-        this.session = JSON.parse(userObject);
+      if(role==='admin') {
+        this.pages.push({ icon: 'brush', title: 'styles', component: ChatstylePage });
       } else {
-        this.session = null;
+
+        for (var index = 0; index < this.pages.length; index++) {
+          if(this.pages[index].title==='styles') {
+            this.pages.splice(index,1);
+          }
+        }
       }
+
+      this.rootPage = MainPage;
     });
+
   }
 
   initTranslate() {
@@ -91,10 +96,8 @@ export class MyApp {
 
   openPage(page) {
     if(page.title=='logout') {
-      //logout menu button clicked
-
-      this.storage.remove('gokurbi.com-user').then((resp) => {
-        console.log('user storage removed');
+      this.storage.remove('gokurbi.com-jwt').then((resp) => {
+        this.storage.remove('gokurbi.com-user');
         this.session = null;
       });
     }

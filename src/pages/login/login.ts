@@ -5,7 +5,7 @@ import { MainPage } from '../../pages/pages';
 import { Storage } from '@ionic/storage';
 import { User } from '../../providers/user';
 
-import {App} from 'ionic-angular';
+import {App, Events} from 'ionic-angular';
 
 // import { TranslateService } from '@ngx-translate/core';
 
@@ -28,6 +28,7 @@ export class LoginPage {
 
   constructor(
     public app: App,
+    public events: Events,
     public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
@@ -50,13 +51,16 @@ export class LoginPage {
       this.user.getRole(this.session.givenRole).subscribe((roleResp) => {
 
         this.session.role = roleResp.json().name;
+        
+        if(!this.session.displayName) {
+          this.session['displayName'] = '';
+        }
 
         // Save Stamplay jwt for current app user session
         this.storage.set('gokurbi.com-jwt', resp.headers.get('x-stamplay-jwt'));
         this.storage.set('gokurbi.com-user',JSON.stringify(this.session)).then((userObject) => {
           
-          // this.navCtrl.setRoot(MainPage);
-          // this.navCtrl.pop();
+          this.events.publish('user:login', userObject, this.session.role);
           this.app.getRootNav().setRoot(MainPage);
         });
       }, (err) => {
